@@ -1,0 +1,7 @@
+import { createServer } from "node:http";
+import { readFile, stat } from "node:fs/promises";
+import { extname, join, normalize } from "node:path";
+const root = new URL(".", import.meta.url).pathname;
+const types = { ".html":"text/html; charset=utf-8", ".css":"text/css; charset=utf-8", ".mjs":"text/javascript; charset=utf-8", ".json":"application/json; charset=utf-8" };
+const server = createServer(async (req,res) => { try { const pathname = decodeURIComponent(new URL(req.url,"http://localhost").pathname); const relative = pathname === "/" ? "index.html" : pathname.slice(1); const file = normalize(join(root, relative)); if (!file.startsWith(root)) throw new Error("outside root"); const info = await stat(file); if (!info.isFile()) throw new Error("not file"); res.writeHead(200,{"content-type":types[extname(file)]??"application/octet-stream","content-security-policy":"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'","x-content-type-options":"nosniff","referrer-policy":"no-referrer","permissions-policy":"camera=(), microphone=(), geolocation=()","cache-control":"no-store"}); res.end(await readFile(file)); } catch { res.writeHead(404,{"content-type":"text/plain; charset=utf-8"}); res.end("Not found\n"); } });
+const port = Number(process.env.PORT ?? 4173); server.listen(port,"127.0.0.1",()=>console.log(`MCP OAuth Metadata Lab: http://127.0.0.1:${port}`));
