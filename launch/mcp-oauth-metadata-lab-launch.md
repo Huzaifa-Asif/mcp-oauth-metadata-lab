@@ -34,6 +34,6 @@ The next step remains a live test in an isolated environment, followed by server
 
 ## Release details
 
-MCP OAuth Metadata Lab is MIT-licensed and intended for local developer use. The v0.1.0 release ships a browser UI, CLI, examples, portable audit skill, documentation, and release verification checklist. The project’s sources and live demo links will be inserted here only after exact-commit CI and deployment are independently verified.
+MCP OAuth Metadata Lab is MIT-licensed and intended for local developer use. The v0.1.0 release ships a browser UI, CLI, examples, portable audit skill, documentation, and release verification checklist. Explore the [source on GitHub](https://github.com/Huzaifa-Asif/mcp-oauth-metadata-lab) or try the [static live app](https://huzaifa-asif.github.io/mcp-oauth-metadata-lab/). Release verification is recorded separately from directory status; this developer utility has not been submitted to the OpenAI directory.
 
 _Draft prepared 2026-10-23 MYT. Publication destination is intentionally unselected pending explicit authorization._
